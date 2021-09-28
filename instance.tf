@@ -83,6 +83,7 @@ resource "aws_security_group_rule" "dms-sg-self" {
 }
 
 resource "aws_dms_replication_instance" "dms-instance" {
+  depends_on = [ aws_iam_role.dms-vpc-role ]
   allocated_storage            = var.dms_instance_storage
   apply_immediately            = var.dms_instance_apply_immediately
   auto_minor_version_upgrade   = var.dms_instance_auto_minor_version_upgrade
